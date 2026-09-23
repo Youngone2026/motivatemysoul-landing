@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Motivate My Soul — a 44-card oracle deck for the days that ask something of you. A free daily pull, plus a one-time unlock for spreads, the full deck, and a private journal." />
+<meta property="og:title" content="Motivate My Soul" />
+<meta property="og:description" content="An oracle deck for the days that ask something of you. Pull a card, read it slowly, and let it set the tone." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://motivatemysoul.com" />
+<meta name="theme-color" content="#0a0908" />
+<title>Motivate My Soul — Oracle Card Deck for iPhone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a0908;
+    --bg-2: #0d0b08;
+    --panel: #14110b;
+    --panel-2: #191510;
+    --line: #2a2617;
+    --line-2: #3a3324;
+    --gold: #c9a227;
+    --gold-soft: #e8d9a8;
+    --gold-dim: #8a7f5c;
+    --ink: #f4ecd6;
+    --body: #c9c2af;
+    --muted: #8a8370;
+    --faint: #6b6350;
+    --paper: #f4f1e8;
+    --paper-ink: #2a2620;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --maxw: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 620px at 50% -8%, rgba(201,162,39,0.10), transparent 60%),
+      radial-gradient(900px 700px at 90% 20%, rgba(201,162,39,0.05), transparent 55%),
+      var(--bg);
+    color: var(--body);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: 22px; }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+  h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: 500; }
+
+  a { color: inherit; }
+
+  /* ---------- top bar ---------- */
+  header.nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(var(--bg-2), rgba(10,9,8,0.72));
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding-block: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .brand .name { font-family: var(--serif); font-size: 17px; color: var(--ink); letter-spacing: 0.01em; }
+  .emblem {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: radial-gradient(circle at 50% 42%, #1e1a12, #0c0a07 70%);
+    border: 1px solid #3a3428; display: grid; place-items: center; flex: none;
+  }
+  .emblem i {
+    width: 15px; height: 15px; border-radius: 50%; border: 1.4px solid var(--gold);
+    display: grid; place-items: center;
+  }
+  .emblem i::after { content: ""; width: 3.5px; height: 3.5px; border-radius: 50%; background: var(--gold); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: var(--sans); font-size: 14.5px; font-weight: 600;
+    padding: 12px 20px; border-radius: 999px; border: 1px solid transparent;
+    cursor: pointer; text-decoration: none; transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-gold { background: var(--gold); color: #1a1508; box-shadow: 0 10px 30px -12px rgba(201,162,39,0.6); }
+  .btn-gold:hover { background: var(--gold-soft); }
+  .btn-ghost { background: transparent; color: var(--gold-soft); border-color: var(--line-2); }
+  .btn-ghost:hover { border-color: var(--gold); }
+  .nav .btn { padding: 9px 16px; font-size: 13.5px; }
+  .apple { width: 16px; height: 16px; flex: none; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top: 46px; padding-bottom: 30px; text-align: center; }
+  .hero .eyebrow { margin-bottom: 16px; }
+  .hero h1 {
+    font-family: var(--serif); color: var(--ink);
+    font-size: clamp(44px, 12vw, 92px); line-height: 0.98; letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  .hero .lede {
+    max-width: 34ch; margin: 20px auto 0; font-size: clamp(15px, 2.4vw, 18px);
+    color: var(--body); font-family: var(--serif); font-style: italic;
+  }
+
+  /* ---------- spread ---------- */
+  .stage {
+    margin: 34px auto 8px; max-width: 760px; position: relative;
+    perspective: 1400px;
+  }
+  .stage::before {
+    content: ""; position: absolute; inset: -6% 8% auto; height: 78%; top: 8%;
+    background: radial-gradient(closest-side, rgba(201,162,39,0.16), transparent 72%);
+    filter: blur(6px); z-index: 0; pointer-events: none;
+  }
+  .spread {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.4vw, 20px);
+    align-items: start;
+  }
+  .slot { text-align: center; }
+  .slot .label {
+    font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 11px; min-height: 26px; display: block;
+  }
+  .card { animation: bob 7s ease-in-out infinite; }
+  .slot:nth-child(1) .card { animation-delay: -0.6s; }
+  .slot:nth-child(2) .card { animation-delay: -3.2s; }
+  .slot:nth-child(3) .card { animation-delay: -1.8s; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+  .card-inner {
+    position: relative; width: 100%; aspect-ratio: 0.64; border-radius: 14px;
+    background:
+      radial-gradient(120% 90% at 50% 6%, #221d13 0%, #131009 72%);
+    border: 1px solid var(--gold);
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(201,162,39,0.10);
+    padding: clamp(11px, 2.2vw, 18px);
+    display: flex; flex-direction: column; justify-content: space-between; gap: 8px;
+    transition: transform .34s cubic-bezier(.4,.1,.2,1), box-shadow .3s ease;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    cursor: default;
+  }
+  .card.flip .card-inner { transform: rotateY(91deg); box-shadow: 0 6px 20px -14px rgba(0,0,0,0.9); }
+  .card.white .card-inner {
+    background: radial-gradient(120% 90% at 50% 8%, #f6f3ea 0%, #e9e4d7 72%);
+    border-color: #b8b4a8;
+    box-shadow: 0 18px 40px -24px rgba(0,0,0,0.55);
+  }
+  .c-head { display: flex; justify-content: space-between; align-items: center;
+    font-size: clamp(8px, 1.5vw, 9.5px); letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold-dim); }
+  .card.white .c-head { color: #8a8470; }
+  .c-ring { width: 13px; height: 13px; border-radius: 50%; border: 1.2px solid var(--gold); display: inline-grid; place-items: center; }
+  .c-ring::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
+  .card.white .c-ring { border-color: #b39a3f; }
+  .card.white .c-ring::after { background: #b39a3f; }
+  .c-mid { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+  .c-title { font-family: var(--serif); color: var(--ink); font-weight: 500;
+    font-size: clamp(15px, 3vw, 22px); line-height: 1.14; }
+  .card.white .c-title { color: var(--paper-ink); }
+  .c-quote { font-family: var(--serif); font-style: italic; color: #cdbf98;
+    font-size: clamp(10.5px, 1.9vw, 13.5px); line-height: 1.42; }
+  .card.white .c-quote { color: #6a6047; }
+  .c-foot { font-size: clamp(7px, 1.4vw, 8.5px); letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); text-align: center; }
+  .card.white .c-foot { color: #a39d8a; }
+
+  .stage-actions { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 26px; }
+  .draw-hint { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--faint); }
+
+  /* ---------- primary cta block ---------- */
+  .cta-block { text-align: center; margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .cta-note { font-size: 12.5px; color: var(--muted); max-width: 40ch; }
+  .stars { color: var(--gold); letter-spacing: 2px; font-size: 13px; }
+
+  /* ---------- generic section ---------- */
+  section.band { padding-block: clamp(56px, 9vw, 92px); }
+  .section-head { text-align: center; max-width: 44ch; margin: 0 auto 40px; display: flex; flex-direction: column; gap: 14px; }
+  .section-head h2 { font-family: var(--serif); color: var(--ink); font-size: clamp(28px, 5.4vw, 42px); line-height: 1.05; }
+  .section-head p { color: var(--body); font-size: 15.5px; }
+
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); border: 0; margin: 0; }
+
+  /* ways to pull */
+  .ways { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .way {
+    border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 24px;
+    background: linear-gradient(180deg, var(--panel), var(--bg-2));
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .way .tag { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); }
+  .way .glyph { font-size: 18px; line-height: 1; filter: saturate(0.9); }
+  .way h3 { font-family: var(--serif); color: var(--ink); font-size: 21px; }
+  .way p { font-size: 14px; color: var(--body); margin: 0; }
+  .way .free { align-self: flex-start; margin-top: 2px; font-size: 10.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gold-soft); border: 1px solid var(--line-2); border-radius: 999px; padding: 3px 9px; }
+
+  /* eight parts */
+  .parts-band { background: linear-gradient(180deg, transparent, rgba(201,162,39,0.03), transparent); }
+  .parts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px 30px; max-width: 720px; margin: 0 auto; }
+  .part-row { display: flex; align-items: baseline; gap: 16px; padding: 15px 4px; border-bottom: 1px solid var(--line); }
+  .part-row .rn { font-family: var(--serif); color: var(--gold); font-size: 17px; min-width: 42px; font-variant-numeric: tabular-nums; }
+  .part-row .pt { font-family: var(--serif); color: var(--ink); font-size: 18px; }
+
+  /* pricing / quiet */
+  .quiet { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: stretch; }
+  .price-card {
+    border: 1px solid var(--line-2); border-radius: 20px; padding: 30px;
+    background: radial-gradient(120% 80% at 50% 0%, rgba(201,162,39,0.07), var(--panel) 60%);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .price-card .p-amt { font-family: var(--serif); color: var(--ink); font-size: 46px; line-height: 1; }
+  .price-card .p-amt small { font-size: 16px; color: var(--muted); font-family: var(--sans); }
+  .price-card .p-once { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+  .checks { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .check { display: flex; gap: 11px; align-items: flex-start; font-size: 14px; color: var(--body); }
+  .check svg { flex: none; margin-top: 2px; }
+  .promises { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .promise { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--bg-2); }
+  .promise b { color: var(--ink); font-weight: 500; font-family: var(--serif); font-size: 16px; }
+  .promise p { margin: 5px 0 0; font-size: 13.5px; color: var(--muted); }
+
+  /* footer */
+  footer { border-top: 1px solid var(--line); padding-block: 54px 40px; background: var(--bg-2); }
+  .foot-cta { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 44px; }
+  .foot-cta h2 { font-family: var(--serif); color: var(--ink); font-size: clamp(26px, 5vw, 38px); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 12px 26px; justify-content: center; align-items: center; }
+  .foot-links a { color: var(--gold-soft); text-decoration: none; font-size: 14px; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .foot-links a:hover { border-color: var(--gold); }
+  .foot-meta { text-align: center; margin-top: 30px; color: var(--faint); font-size: 12px; }
+  .foot-meta .sep { opacity: 0.5; margin: 0 8px; }
+
+  @media (max-width: 720px) {
+    .ways { grid-template-columns: 1fr; }
+    .parts { grid-template-columns: 1fr; }
+    .quiet { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 440px) {
+    .slot .label { font-size: 9px; letter-spacing: 0.08em; }
+    .c-quote { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .card.flip .card-inner { transform: none; opacity: 0.35; }
+    .btn:active { transform: none; }
+  }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="brand">
+      <span class="emblem" aria-hidden="true"><i></i></span>
+      <span class="name">Motivate&nbsp;My&nbsp;Soul</span>
+    </div>
+    <a class="btn btn-gold" href="https://apps.apple.com/app/motivate-my-soul/id6798957224" target="_blank" rel="noopener">
+      <svg class="apple" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11.03 8.44c-.02-1.62 1.32-2.4 1.38-2.43-.75-1.1-1.92-1.25-2.34-1.27-1-.1-1.94.58-2.45.58-.5 0-1.28-.57-2.1-.55-1.08.02-2.08.63-2.64 1.6-1.12 1.95-.29 4.83.8 6.41.54.77 1.18 1.64 2.02 1.6.81-.03 1.12-.52 2.1-.52.97 0 1.25.52 2.11.5.87-.01 1.42-.79 1.96-1.56.61-.9.87-1.76.88-1.8-.02-.01-1.69-.65-1.72-2.57zM9.5 3.6c.44-.54.74-1.28.66-2.02-.64.03-1.4.43-1.86.96-.41.47-.77 1.23-.67 1.95.71.06 1.43-.36 1.87-.89z"/></svg>
+      Download
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="eyebrow">44 Cards · 8 Parts · One Journey</div>
+    <h1>Motivate<br />My Soul</h1>
+    <p class="lede">An oracle deck for the days that ask something of you. Pull a card, read it slowly, and let it set the tone.</p>
+
+    <div class="stage">
+      <div class="spread" id="spread">
+        <div class="slot">
+          <span class="label">Where you are</span>
+          <div class="card"><div class="card-inner">
+            <div class="c-head"><span class="c-part">Part I</span><span class="c-ring" aria-hidden="true"></span></div>
+            <div class="c-mid"><h3 class="c-title"></h3><p class="c-quote"></p></div>
+            <div class="c-foot"></div>
+          </div></div>
+        </div>
+        <div class="slot">
+          <span class="label">What's blocking you</span>
+          <div class="card"><div class="card-inner">
+            <div class="c-head"><span class="c-part">Part I</span><span class="c-ring" aria-hidden="true"></span></div>
+            <div class="c-mid"><h3 class="c-title"></h3><p class="c-quote"></p></div>
+            <div class="c-foot"></div>
+          </div></div>
+        </div>
+        <div class="slot">
+          <span class="label">What to do next</span>
+          <div class="card"><div class="card-inner">
+            <div class="c-head"><span class="c-part">Part I</span><span class="c-ring" aria-hidden="true"></span></div>
+            <div class="c-mid"><h3 class="c-title"></h3><p class="c-quote"></p></div>
+            <div class="c-foot"></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-actions">
+      <button class="btn btn-ghost" id="drawBtn" type="button">✦&nbsp;&nbsp;Draw a new spread</button>
+      <span class="draw-hint">Three cards, pulled honestly.</span>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn btn-gold" href="https://apps.apple.com/app/motivate-my-soul/id6798957224" target="_blank" rel="noopener">
+        <svg class="apple" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11.03 8.44c-.02-1.62 1.32-2.4 1.38-2.43-.75-1.1-1.92-1.25-2.34-1.27-1-.1-1.94.58-2.45.58-.5 0-1.28-.57-2.1-.55-1.08.02-2.08.63-2.64 1.6-1.12 1.95-.29 4.83.8 6.41.54.77 1.18 1.64 2.02 1.6.81-.03 1.12-.52 2.1-.52.97 0 1.25.52 2.11.5.87-.01 1.42-.79 1.96-1.56.61-.9.87-1.76.88-1.8-.02-.01-1.69-.65-1.72-2.57zM9.5 3.6c.44-.54.74-1.28.66-2.02-.64.03-1.4.43-1.86.96-.41.47-.77 1.23-.67 1.95.71.06 1.43-.36 1.87-.89z"/></svg>
+        Download on the App Store
+      </a>
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p class="cta-note">Free daily pull. A one-time unlock — no subscription — opens spreads, the full 44-card deck, and your private journal.</p>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How you pull</div>
+        <h2>Three ways in</h2>
+        <p>However you come to it — a morning ritual, a hard afternoon, or a question you can't shake — there's a way to pull.</p>
+      </div>
+      <div class="ways wrap" style="padding:0;">
+        <div class="way">
+          <span class="tag"><span class="glyph">🌙</span> Daily Pull</span>
+          <h3>One card to set your day</h3>
+          <p>Before the day gets loud, pull a single card. Read the message, sit with the reflection, carry it with you.</p>
+          <span class="free">Free, forever</span>
+        </div>
+        <div class="way">
+          <span class="tag"><span class="glyph">🃏</span> Three-Card Spread</span>
+          <h3>Where you are, what's blocking you, what to do next</h3>
+          <p>When something's weighing on you, pull three. Not for a literal answer — for a direction.</p>
+        </div>
+        <div class="way">
+          <span class="tag"><span class="glyph">📖</span> Browse the Deck</span>
+          <h3>All 44 cards, in order</h3>
+          <p>Read the whole deck across its eight parts, any time — no draw required.</p>
+        </div>
+        <div class="way">
+          <span class="tag"><span class="glyph">✍️</span> Journal</span>
+          <h3>Every pull, saved privately</h3>
+          <p>Each draw is kept — date, mode, and cards — on your device alone. Revisit them whenever you need to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band parts-band">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The arc of the deck</div>
+        <h2>Eight parts, one journey</h2>
+        <p>Forty-four cards, moving from the mind that starts it all to the will that keeps going.</p>
+      </div>
+      <div class="parts">
+        <div class="part-row"><span class="rn">I</span><span class="pt">Control Your Mind</span></div>
+        <div class="part-row"><span class="rn">II</span><span class="pt">Pain Builds Power</span></div>
+        <div class="part-row"><span class="rn">III</span><span class="pt">Build Your Life</span></div>
+        <div class="part-row"><span class="rn">IV</span><span class="pt">Live in the Moment</span></div>
+        <div class="part-row"><span class="rn">V</span><span class="pt">Let Go and Grow</span></div>
+        <div class="part-row"><span class="rn">VI</span><span class="pt">Gratitude and Perspective</span></div>
+        <div class="part-row"><span class="rn">VII</span><span class="pt">Believe in Yourself</span></div>
+        <div class="part-row"><span class="rn">VIII</span><span class="pt">Keep Going</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Yours, quietly</div>
+        <h2>Buy the deck once. Keep it forever.</h2>
+        <p>Like a real deck — not a subscription. Everything you unlock is yours for good.</p>
+      </div>
+      <div class="quiet wrap" style="padding:0;">
+        <div class="price-card">
+          <span class="p-once">One-time unlock</span>
+          <div class="p-amt">$4.99 <small>once</small></div>
+          <div class="checks">
+            <div class="check"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7.5" stroke="#c9a227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited three-card spreads</span></div>
+            <div class="check"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7.5" stroke="#c9a227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Browse all 44 cards, anytime</span></div>
+            <div class="check"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7.5" stroke="#c9a227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your private journal of every pull</span></div>
+            <div class="check"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7.5" stroke="#c9a227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Unlimited pulls, whenever</span></div>
+          </div>
+        </div>
+        <div class="promises">
+          <div class="promise"><b>The Daily Pull stays free</b><p>You never have to pay to draw your card each day.</p></div>
+          <div class="promise"><b>Private by design</b><p>No account, no sign-up, no tracking. Your journal never leaves your phone.</p></div>
+          <div class="promise"><b>No subscription, ever</b><p>One payment. Nothing to renew or cancel.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-cta">
+      <span class="emblem" aria-hidden="true" style="width:44px;height:44px;border-radius:12px;"><i style="width:22px;height:22px;"></i></span>
+      <h2>One card, pulled honestly, is enough.</h2>
+      <a class="btn btn-gold" href="https://apps.apple.com/app/motivate-my-soul/id6798957224" target="_blank" rel="noopener">
+        <svg class="apple" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11.03 8.44c-.02-1.62 1.32-2.4 1.38-2.43-.75-1.1-1.92-1.25-2.34-1.27-1-.1-1.94.58-2.45.58-.5 0-1.28-.57-2.1-.55-1.08.02-2.08.63-2.64 1.6-1.12 1.95-.29 4.83.8 6.41.54.77 1.18 1.64 2.02 1.6.81-.03 1.12-.52 2.1-.52.97 0 1.25.52 2.11.5.87-.01 1.42-.79 1.96-1.56.61-.9.87-1.76.88-1.8-.02-.01-1.69-.65-1.72-2.57zM9.5 3.6c.44-.54.74-1.28.66-2.02-.64.03-1.4.43-1.86.96-.41.47-.77 1.23-.67 1.95.71.06 1.43-.36 1.87-.89z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+    <div class="foot-links">
+      <a href="https://a.co/d/0ciUSKtm" target="_blank" rel="noopener">Get the book on Amazon</a>
+      <a href="https://motivatemysoul.etsy.com" target="_blank" rel="noopener">Printable deck on Etsy</a>
+      <a href="https://youngone2026.github.io/motivatemysoul-web/" target="_blank" rel="noopener">Support &amp; Privacy</a>
+    </div>
+    <div class="foot-meta">
+      An oracle card deck by T. Young
+      <span class="sep">·</span> Companion to the book <em>Motivate My Soul</em>
+      <span class="sep">·</span> © 2026 RYT Enterprises
+    </div>
+  </div>
+</footer>
+
+<script>
+  var CARDS = [
+    { t: "The Discipline Difference", q: "Motivation sparks the fire. Discipline keeps it burning.", part: "I", name: "Control Your Mind" },
+    { t: "Get Out of Your Own Way", q: "Overthinking is intelligence turned against itself.", part: "I", name: "Control Your Mind" },
+    { t: "Choose the Day", q: "The choice is made the moment you open your eyes.", part: "I", name: "Control Your Mind" },
+    { t: "What They Don't Show You", q: "The pressure wasn't punishing you. It was building you.", part: "II", name: "Pain Builds Power" },
+    { t: "Survival is Strength", q: "You're still here. That's not nothing. That's everything.", part: "II", name: "Pain Builds Power" },
+    { t: "Through the Pain", q: "Not around it. Not under it. Through it.", part: "II", name: "Pain Builds Power" },
+    { t: "Slow is the Speed of Real", q: "Nothing seems to happen for a long time. Then everything does.", part: "III", name: "Build Your Life" },
+    { t: "Guard What Fuels You", q: "What you allow into your life is what you become.", part: "III", name: "Build Your Life" },
+    { t: "Never Give Up on Your Dreams", q: "The dream doesn't chase you. You chase the dream.", part: "III", name: "Build Your Life" },
+    { t: "Put the Phone Down", q: "Real life doesn't have a like button. It just has the moment.", part: "IV", name: "Live in the Moment" },
+    { t: "24 Hours", q: "It was never about how much time they had — but what they did with it.", part: "IV", name: "Live in the Moment" },
+    { t: "Eyes Open", q: "Every day you wake up is a door that didn't have to open.", part: "IV", name: "Live in the Moment" },
+    { t: "Close the Chapter", q: "You can't move to the next chapter if you refuse to close this one.", part: "V", name: "Let Go and Grow" },
+    { t: "You Were Never the Same Twice", q: "Change isn't a flaw in your character. It's proof you're alive.", part: "V", name: "Let Go and Grow" },
+    { t: "Enough is Enough", q: "Enough is a decision. You stop tolerating and start choosing.", part: "VI", name: "Gratitude and Perspective" },
+    { t: "We Are Not Alone", q: "Resilience was never meant to be a solo act.", part: "VI", name: "Gratitude and Perspective" },
+    { t: "Never Stop Believing", q: "If you don't think much of yourself, why would anyone else?", part: "VII", name: "Believe in Yourself" },
+    { t: "Failure is an Option. Quitting Isn't.", q: "The only failure that counts is deciding not to get back up.", part: "VII", name: "Believe in Yourself" },
+    { t: "Find the Light", q: "The light is always there. Be still enough — and brave enough — to let it in.", part: "VII", name: "Believe in Yourself" },
+    { t: "You Are Not Finished", q: "The fact that you're still here is not a coincidence. It's evidence.", part: "VIII", name: "Keep Going", white: true },
+    { t: "Say No More", q: "The most powerful thing you can say is: not anymore.", part: "VIII", name: "Keep Going" }
+  ];
+
+  var slots = Array.prototype.slice.call(document.querySelectorAll('#spread .slot'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function pick3() {
+    var pool = CARDS.slice(), out = [];
+    for (var i = 0; i < 3; i++) {
+      var idx = Math.floor(Math.random() * pool.length);
+      out.push(pool.splice(idx, 1)[0]);
+    }
+    return out;
+  }
+
+  function fill(slot, card) {
+    var cardEl = slot.querySelector('.card');
+    cardEl.classList.toggle('white', !!card.white);
+    slot.querySelector('.c-part').textContent = 'Part ' + card.part;
+    slot.querySelector('.c-title').textContent = card.t;
+    slot.querySelector('.c-quote').textContent = '“' + card.q + '”';
+    slot.querySelector('.c-foot').textContent = card.name;
+  }
+
+  function draw(initial) {
+    var picks = pick3();
+    slots.forEach(function (slot, i) {
+      var cardEl = slot.querySelector('.card');
+      if (initial || reduce) { fill(slot, picks[i]); return; }
+      setTimeout(function () {
+        cardEl.classList.add('flip');
+        setTimeout(function () { fill(slot, picks[i]); }, 300);
+        setTimeout(function () { cardEl.classList.remove('flip'); }, 340);
+      }, i * 140);
+    });
+  }
+
+  draw(true);
+  var btn = document.getElementById('drawBtn');
+  btn.addEventListener('click', function () { draw(false); });
+</script>
+</body>
+</html>
